@@ -1,0 +1,181 @@
+@mixin modal__title($height, $size, $size-tablet, $content){
+  .modal__title {
+    height: $height;
+    &::before {
+      @include font($black,$size, 900);
+      content: $content; 
+      font-style:  italic;
+      left: 20px;
+      line-height: 74%;
+      position: absolute;
+      // text-stroke: 0.5px  $white;
+      // -webkit-text-stroke: 0.5px  $white;
+      text-transform: uppercase;
+      text-shadow:
+        -1px -1px 0 $silver,  
+         1px -1px 0 $silver,
+         -1px 1px 0 $silver,
+          1px 1px 0 $silver;
+      top: 30px;
+      word-spacing:9999px;
+      width: 50%;
+      @include size(tablet) {
+        @include font($black, $size-tablet, 900);
+        left: 30px;
+        top: 60px;
+        width: 250px;
+      }
+    }
+  }
+}
+
+.modal{
+  background: $black;
+  top: -100%;
+  left: 0;
+  height: 100%;
+  opacity: 0;
+  overflow-y: auto;
+  position: fixed;
+  visibility: hidden;
+  transition:all .3s ease;
+  width:  100%;
+  z-index: 30;
+  &::-webkit-scrollbar {
+    width: 0.5em;
+  }
+  &::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $yelow;
+    outline: 1px solid $black;
+  }
+
+  &.modal--open{
+    visibility:visible;
+    opacity: 1;
+    //transition-delay:0s;
+    top: 0;
+  }
+  &__close{
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
+    border: 0;
+    height: 30px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 30px;
+    z-index: 30;
+    &::before, &::after {
+        background: $white;
+        border-radius: 3px; 
+        content: '';
+        height: 2px;
+        position: absolute;
+        right: 0;
+        top:13px;
+        width: 32px;
+        transform: rotate(45deg);
+    }
+    &::after {
+        transform: rotate(-45deg);
+    }
+  }
+
+  &__container{
+    position: relative;
+    padding: 4em 2em;
+    @include font($white, 1em, 300);
+    line-height: 1.6em;
+    @include modal__title(240px, 2.5em, 3.5em, "");
+    .modal__content {
+      .modal__subtitle {
+        @include font($yelow, 1.2em, 800);
+        margin-top: 50px;
+        &:first-child {
+          margin: 0;
+        }
+      }
+      p {
+        padding: 5px 0;
+      }
+      .modal__label {
+        @include font($white, 1em, 800);
+        margin: 10px 0;
+      }
+      .modal__download {
+        background: $yelow;
+        border-radius: 6px;
+        display: flex;
+        justify-content: center;
+        margin: 10px 0;
+        padding: 15px  20px;
+        
+        .download__icon {
+  
+        }
+        .download__text {
+            @include font($black, .9em, 800);
+            line-height: 1.2em;
+        }
+      } 
+      @include size(tablet) {
+        width: 70%;
+      }
+    }
+    @include size(tablet) {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    } 
+    @include size(desktop) {
+      margin: 0 auto;
+      position: relative;
+      width: 1000px;
+      background: $black;
+    }    
+  }
+}
+
+.modal--about > .modal__container {
+  @include modal__title(250px, 50px, 70px, 'so bre o fiel tor ce dor');
+}
+
+.modal--benefitsft > .modal__container {
+  @include modal__title(190px, 50px, 70px, 'BE NE FÍ CI OS');
+}
+
+.modal--terms > .modal__container {
+  @include modal__title(190px, 50px, 70px, 'RE GU LA ME N TO');
+}
+
+.modal--faq > .modal__container {
+  @include modal__title(110px, 50px, 70px, 'DÚ VI DAS');
+}
+
+.modal--all > .modal__container {
+  .modal__title {
+    display: none;
+  }
+  .modal__content {
+    .modal__subtitle {
+      @include font($yelow, 1.4em, 800);
+      padding-bottom: 20px;
+    }
+    .modal__list{
+      li {
+        padding: 4px 0
+      }
+    }
+    .modal__list--decimal {
+      @include list__decimal($yelow, 600, 1.3em);
+    }
+    @include size(tablet) {
+      width: 100%;
+    }
+  }
+} 

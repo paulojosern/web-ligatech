@@ -1,0 +1,114 @@
+//variables
+$black: #000000;
+$white: #ffffff;
+$yelow: #ffbe00;
+$blue: #4d2f8f;
+$aqua: #d5dadf;
+$red: #e73656;
+$silver: #eaeaea;
+$orange: #f15728;
+$border: #ddd;
+$gray: #444;
+
+$paddingSection: 120px 0;
+$maxWidth: 1300px;
+$activeAnimation: all 0.4s ease-in-out;
+//fonts
+@import url('https://fonts.googleapis.com/css?family=Alata:300,400,500,600,700,800,900');
+$font: 'Alata', arial, sans-serif;
+
+$animation--left: all 0.4s cubic-bezier(0.5, 0.1, 0, 1.2);
+$animation--top: all 0.3s ease-in-out;
+
+@mixin font($color, $size, $type) {
+	color: $color;
+	font-family: $font;
+	font-size: $size;
+	font-weight: $type;
+}
+
+@mixin size($size) {
+	@if $size == mobile {
+		@media (min-width: 360px) and (max-height: 640px) {
+			@content;
+		}
+	} @else if $size == mobile--long {
+		@media (min-width: 360px) and (min-height: 720px) {
+			@content;
+		}
+	} @else if $size == mobile__apple {
+		@media (min-width: 375px) and (max-height: 667px) {
+			@content;
+		}
+	} @else if $size == mobile__apple--long {
+		@media (min-width: 375px) and (min-height: 667px) {
+			@content;
+		}
+	} @else if $size == mobile__apple--plus {
+		@media (min-width: 414px) and (min-height: 736px) {
+			@content;
+		}
+	} @else if $size == tablet {
+		@media (min-width: 768px) {
+			@content;
+		}
+	} @else if $size == tablet--pro {
+		@media (min-width: 992px) {
+			@content;
+		}
+	} @else if $size == desktop {
+		@media (min-width: 1200px) {
+			@content;
+		}
+	} @else if $size == desktop--large {
+		@media (min-width: 1404px) {
+			@content;
+		}
+	}
+}
+
+@mixin sizefont(
+	$color,
+	$bold,
+	$mobile,
+	$mobilelong,
+	$apple,
+	$applelong,
+	$appleplus,
+	$tablet: false,
+	$tabletpro: false,
+	$desktop: false
+) {
+	@include size(mobile) {
+		@include font($color, $mobile, $bold);
+	}
+	@include size(mobile--long) {
+		@include font($color, $mobilelong, $bold);
+	}
+
+	@include size(mobile__apple--long) {
+		@include font($color, $applelong, $bold);
+	}
+	@include size(mobile__apple) {
+		@include font($color, $apple, $bold);
+	}
+
+	@include size(mobile__apple--plus) {
+		@include font($color, $appleplus, $bold);
+	}
+	@if $tablet {
+		@include size(tablet) {
+			@include font($color, $tablet, $bold);
+		}
+	}
+	@if $tabletpro {
+		@include size(tablet--pro) {
+			@include font($color, $tabletpro, $bold);
+		}
+	}
+	@if $desktop {
+		@include size(desktop) {
+			@include font($color, $desktop, $bold);
+		}
+	}
+}

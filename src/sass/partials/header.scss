@@ -1,0 +1,262 @@
+$transition: all 0.6s ease-in-out;
+.header {
+	position: absolute;
+	width: 100vw;
+	z-index: 10;
+	display: flex;
+	transition: $transition;
+	top: 0;
+	#input__menu {
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+		-webkit-touch-callout: none;
+		&:checked ~ .btn__menu {
+			position: fixed;
+		}
+		&:checked ~ .btn__menu span {
+			opacity: 1;
+			transform: rotate(45deg) translate(-9.5px, -16px);
+			background: black;
+		}
+		&:checked ~ .btn__menu span:nth-last-child(3) {
+			opacity: 0;
+			transform: rotate(0deg) scale(0.2, 0.2);
+		}
+		&:checked ~ .btn__menu span:nth-last-child(2) {
+			transform: rotate(-45deg) translate(-4px, 12px);
+		}
+		&:checked ~ .nav {
+			transform: none;
+		}
+	}
+	.logo--mobile {
+		position: absolute;
+		left: 7%;
+		padding: 20px 0;
+
+		@include size(tablet--pro) {
+			display: none;
+		}
+		svg {
+			width: 20%;
+			height: auto;
+			fill: white;
+			@include size(tablet) {
+				width: 30%;
+			}
+		}
+	}
+	.btn__menu {
+		-webkit-user-select: none;
+		user-select: none;
+		width: 33px;
+		height: 25px;
+		position: absolute;
+		z-index: 9;
+		right: 30px;
+		top: 30px;
+		@include size(tablet--pro) {
+			display: none;
+		}
+		span {
+			display: block;
+			width: 33px;
+			height: 4px;
+			margin-bottom: 6px;
+			position: relative;
+			background: white;
+			border-radius: 3px;
+			z-index: 1;
+			transform-origin: 4px 0px;
+			transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1),
+				background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease;
+			&:first-child {
+				transform-origin: 0% 0%;
+			}
+			&:nth-last-child(2) {
+				transform-origin: 0% 100%;
+			}
+		}
+	}
+	.nav {
+		margin: 0 auto;
+		width: 100%;
+		transform-origin: 0% 0%;
+		transform: translateX(100%);
+		transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+		-webkit-font-smoothing: antialiased;
+		position: fixed;
+		list-style-type: none;
+		@include size(tablet--pro) {
+			transform: none;
+			transition: all 0.7s ease-in-out;
+		}
+		.logo {
+			position: absolute;
+			left: 5%;
+			top: 50px;
+			display: none;
+			@include size(tablet--pro) {
+				display: block;
+			}
+			svg {
+				width: 120px;
+				height: auto;
+				fill: white;
+			}
+		}
+		.menu {
+			width: calc(100vw - 80px);
+			height: 100vh;
+			padding: 0 40px;
+			background: $orange;
+			display: flex;
+			flex-direction: column;
+			align-items: flex-end;
+			justify-content: center;
+			transition: $transition;
+			@include size(tablet--pro) {
+				height: 100px;
+				flex-direction: row;
+				align-items: center;
+				background: transparent;
+			}
+			&__item {
+				.link__menu {
+					transition: $transition;
+					@include font(black, 2em, 200);
+					display: block;
+					padding: 20px 10px;
+					@include size(mobile) {
+						@include font(black, 2.2em, 200);
+						padding: 25px 10px;
+					}
+
+					@include size(mobile--long) {
+						@include font(rgb(0, 0, 0), 2.4em, 200);
+						padding: 30px 10px;
+					}
+
+					@include size(mobile__apple--long) {
+						@include font(rgb(0, 0, 0), 2.4em, 200);
+						padding: 35px 10px;
+					}
+					@include size(mobile__apple) {
+						@include font(rgb(0, 0, 0), 2.4em, 200);
+						padding: 25px 10px;
+					}
+
+					@include size(mobile__apple--plus) {
+						@include font(rgb(0, 0, 0), 2.4em, 200);
+						padding: 35px 10px;
+					}
+
+					@include size(tablet) {
+						@include font(rgb(0, 0, 0), 3.4em, 200);
+						padding: 35px 10px;
+					}
+
+					@include size(tablet--pro) {
+						@include font(rgb(255, 255, 255), 1.55em, 200);
+						padding: 10px 10px;
+						margin: 0 10px;
+						position: relative;
+						&::before {
+							content: '';
+							position: absolute;
+							bottom: 0px;
+							width: 0%;
+							border-bottom: 2px solid white;
+							opacity: 0;
+							transition: all 0.2s ease-in-out;
+							transform: translateY(10px);
+						}
+						&:hover {
+							&::before {
+								width: 20%;
+								opacity: 1;
+								transform: translateY(0px);
+							}
+						}
+					}
+				}
+			}
+			&__contact {
+				position: absolute;
+				bottom: 40px;
+				@include size(tablet--pro) {
+					position: absolute;
+					right: 40px;
+				}
+				.link__menu {
+					.text {
+						@include font(rgb(255, 255, 255), 1.3em, 200);
+						display: none;
+						@include size(tablet--pro) {
+							display: block;
+						}
+					}
+					.icon-contact {
+						width: 45px;
+						fill: black;
+						@include size(tablet) {
+							width: 65px;
+						}
+						@include size(tablet--pro) {
+							width: 35px;
+							display: none;
+							fill: white;
+						}
+					}
+				}
+			}
+		}
+	}
+	&--up {
+		top: -100px;
+		.nav {
+			.logo {
+				position: absolute;
+				left: 5%;
+				top: -100%;
+			}
+			.menu {
+				background: white;
+				height: 80px;
+				&__item {
+					.link__menu {
+						@include font(black, 1.3em, 200);
+					}
+				}
+			}
+		}
+	}
+	&--down {
+		top: 0;
+	}
+	&--fixed {
+		.nav {
+			.logo {
+				position: absolute;
+				left: 5%;
+				top: -100%;
+				svg {
+					width: 60px;
+					height: auto;
+					fill: white;
+				}
+			}
+			.menu {
+				background: white;
+				height: 80px;
+				&__item {
+					.link__menu {
+						@include font(black, 1.3em, 200);
+					}
+				}
+			}
+			box-shadow: 2px 0 20px rgba(black, 0.13);
+		}
+	}
+}

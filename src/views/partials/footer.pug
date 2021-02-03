@@ -1,0 +1,33 @@
+footer.footer 
+    .footer__lines
+        include includes/lines.pug 
+    .footer__container
+        .footer__content    
+            .contact  
+                a(href="mailto:contato@ligatech.com?subject=Mail from Site") contato@ligatech.com.br
+                //input.form__input(type="text", name="" placeholder="Digite aqui seu e-mail que retornaremos.")
+        .footer__content
+            //- .logo
+            //-     include includes/ligatech.pug 
+            .footer__side--menu
+                .menu
+                    a.item__menu.scroll(href="#about") Sobre
+                    a.item__menu.scroll(href="#differential") Diferencial
+                    a.item__menu.scroll(href="#clients") Clientes
+                .menu
+                    a.item__menu.scroll(href="#products") Produtos
+                    a.item__menu.scroll(href="#services") Serviços
+                    a.item__menu.scroll(href="#portifolio") Portifólio
+                
+            .footer__side.footer__side--logos
+                a(href="http://www.pagseguro.uol.com.br" target="blank").side__item.side__item--pagseguro
+                    span.pagseguro
+                        include includes/pagseguro.pug 
+                    span.pagbank
+                        include includes/pagbank.pug 
+                a(href="http://www.redd.com.br/" target="blank").side__item 
+                    include includes/redd.pug 
+                    
+            .footer__copy 
+                span &copy; 2020 Ligatech.  by Omni 
+        

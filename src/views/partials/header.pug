@@ -1,0 +1,24 @@
+header.header
+    .logo--mobile
+        include includes/ligatech.pug
+    input#input__menu(type="checkbox")
+    label.btn__menu(for="input__menu")
+        span
+        span
+        span
+    nav.nav
+        .logo
+            include includes/ligatech.pug 
+        ul.menu 
+            li.menu__item
+                a.link__menu.scroll(href="#about" data-speed="1000") Sobre
+            li.menu__item
+                a.link__menu.scroll(href="#services" data-speed="1000") Serviços
+            li.menu__item
+                a.link__menu.scroll(href="#products" data-speed="1000") Produtos
+            li.menu__item
+                a.link__menu.scroll(href="#portifolio" data-speed="1000") Portifólio
+            li.menu__contact
+                a.link__menu(href="#") 
+                    .text contato@ligatech.com.br
+                    include includes/icon-contact.pug

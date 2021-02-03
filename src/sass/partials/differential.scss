@@ -1,0 +1,252 @@
+.differential {
+	background: white;
+	padding: $paddingSection;
+	&__container {
+		max-width: $maxWidth;
+		margin: 0 auto;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		position: relative;
+		transition: $activeAnimation;
+		width: 85%;
+	}
+	.title {
+		@include font(black, 2.6em, 800);
+		line-height: 1em;
+		text-align: center;
+		opacity: 0;
+		visibility: hidden;
+		position: relative;
+		top: 50px;
+		transition: all 0.5s ease;
+		&::before {
+			position: absolute;
+			content: '';
+			bottom: -25px;
+			left: 50%;
+			height: 5px;
+			width: 50px;
+			transform: translateX(-50%);
+			background: $orange;
+			transition: all 1.5s ease-in-out;
+		}
+		@include size(tablet) {
+			@include font(black, 2.6em, 800);
+		}
+		@include size(tablet--pro) {
+			@include font(black, 3.2em, 800);
+		}
+	}
+	&__content {
+		@include font(black, 1.2em, 800);
+		line-height: 1.5em;
+		padding: 80px 0;
+		position: relative;
+		transition: height 1.3s ease-in-out;
+		display: flex;
+		flex-flow: column;
+		opacity: 0;
+		visibility: hidden;
+		position: relative;
+		top: 50px;
+		transition: all 0.5s ease;
+		@include size(tablet--pro) {
+			flex-flow: row wrap;
+		}
+		.content__item {
+			width: 100%;
+			max-width: 600px;
+			margin: 0 auto;
+			position: relative;
+			//background: #f0f;
+			.desc {
+				position: absolute;
+				right: 0;
+				top: 100%;
+				display: block;
+				width: 100%;
+				min-height: 80px;
+				text-align: center;
+				color: rgba(black, 0);
+				background: white;
+				z-index: 1;
+				@include size(tablet--pro) {
+					color: rgba(black, 0.2);
+				}
+				&:nth-child(1) {
+					animation-delay: 0s;
+					@include size(tablet--pro) {
+						right: 0;
+						top: 0;
+						width: 90px;
+					}
+				}
+				&:nth-child(2) {
+					animation-delay: 2s;
+					@include size(tablet--pro) {
+						right: 15%;
+						top: 0%;
+						width: 90px;
+					}
+				}
+				&:nth-child(3) {
+					animation-delay: 4s;
+					@include size(tablet--pro) {
+						right: -15%;
+						top: 22%;
+						width: 130px;
+					}
+				}
+				&:nth-child(4) {
+					animation-delay: 6s;
+					@include size(tablet--pro) {
+						right: -15%;
+						top: 60%;
+						width: 130px;
+					}
+				}
+				&:nth-child(5) {
+					animation-delay: 8s;
+					@include size(tablet--pro) {
+						right: 15%;
+						top: 90%;
+						width: 130px;
+					}
+				}
+				&:nth-child(6) {
+					animation-delay: 10s;
+					@include size(tablet--pro) {
+						left: 20%;
+						top: 91%;
+						width: 130px;
+					}
+				}
+				&:nth-child(7) {
+					animation-delay: 12s;
+					@include size(tablet--pro) {
+						left: -14%;
+						top: 55%;
+						width: 130px;
+					}
+				}
+				&:nth-child(8) {
+					animation-delay: 14s;
+					@include size(tablet--pro) {
+						left: -17%;
+						top: 30%;
+						width: 150px;
+					}
+				}
+				&:nth-child(9) {
+					animation-delay: 16s;
+					@include size(tablet--pro) {
+						left: 0%;
+						top: -2%;
+						width: 220px;
+					}
+				}
+				&:nth-child(10) {
+					animation-delay: 20s;
+					display: none;
+					@include size(tablet--pro) {
+						left: -27%;
+						top: 2%;
+						width: 220px;
+					}
+				}
+			}
+			@keyframes pulse {
+				to {
+					color: rgba(black, 0.2);
+					background: white;
+					z-index: 1;
+				}
+				from {
+					color: rgba(black, 1);
+					background: white;
+					z-index: 10;
+				}
+			}
+			svg.torcedor {
+				height: auto;
+				width: 100%;
+			}
+
+			@keyframes rotation {
+				0%,
+				5% {
+					transform: rotate(0deg);
+					display: block;
+					.item__desc {
+						background: #f0f;
+					}
+				}
+				10%,
+				15% {
+					transform: rotate(22.5deg);
+				}
+				20%,
+				25% {
+					transform: rotate(67.5deg);
+				}
+				30%,
+				35% {
+					transform: rotate(112.5deg);
+				}
+				40%,
+				45% {
+					transform: rotate(157.5deg);
+				}
+				50%,
+				55% {
+					transform: rotate(202.5deg);
+				}
+				60%,
+				65% {
+					transform: rotate(247.5deg);
+				}
+				70%,
+				75% {
+					transform: rotate(292.5deg);
+				}
+				80%,
+				85% {
+					transform: rotate(337.5deg);
+				}
+				90%,
+				95% {
+					transform: rotate(360deg);
+				}
+				96%,
+				100% {
+					display: none;
+					transform: rotate(360deg);
+				}
+			}
+			.stadium {
+				position: absolute;
+				top: 0;
+				left: 0;
+				height: auto;
+				width: 100%;
+			}
+		}
+	}
+	.active {
+		.title,
+		.differential__content {
+			opacity: 1;
+			visibility: visible;
+			top: 0px;
+		}
+		.desc {
+			animation-name: pulse;
+			animation-duration: 20s;
+			animation-iteration-count: infinite;
+		}
+		svg.torcedor {
+			animation: rotation 20s infinite linear;
+		}
+	}
+}

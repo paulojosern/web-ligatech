@@ -1,0 +1,108 @@
+.omniclub {
+	background: black;
+	padding: 150px 0;
+	&__container {
+		max-width: $maxWidth;
+		margin: 0 auto;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		position: relative;
+		transition: $activeAnimation;
+		width: 85%;
+	}
+	.title {
+		line-height: 1em;
+		text-align: center;
+		display: flex;
+		align-items: flex-start;
+		justify-content: flex-start;
+		text-align: left;
+		flex-flow: row wrap;
+		@include size(tablet--pro) {
+			align-items: center;
+			justify-content: center;
+			text-align: center;
+		}
+		article {
+			@include font(white, 2.6em, 800);
+			display: flex;
+			line-height: 1.2em;
+			opacity: 0;
+			visibility: hidden;
+			transition: all 1s ease-in-out;
+			width: 100%;
+			justify-content: center;
+			padding: 20px;
+			position: relative;
+			left: -30px;
+			@include size(tablet) {
+				@include font(white, 2.6em, 800);
+			}
+			@include size(tablet--pro) {
+				@include font(white, 3em, 800);
+			}
+			.plus {
+				color: $orange;
+				font-size: 1.8em;
+				padding: 0 10px;
+				display: inline-block;
+				//animation: rotation 2s infinite linear;
+			}
+		}
+		.small {
+			@include font(white, 2em, 500);
+			display: block;
+			padding: 30px 0;
+			width: auto;
+			position: relative;
+			line-height: 1.2em;
+			opacity: 0;
+			visibility: hidden;
+			top: 30px;
+			position: relative;
+			transition: all 1.8s ease-in-out;
+			@include size(tablet--pro) {
+				@include font(white, 1.6em, 300);
+			}
+		}
+	}
+	.active {
+		article {
+			animation-name: fade-in;
+			animation-fill-mode: both;
+			animation-duration: 1s;
+		}
+		@for $i from 1 through 3 {
+			article:nth-of-type(#{$i}) {
+				animation-delay: #{0.3+ ($i)/30}s;
+			}
+		}
+		.small {
+			opacity: 1;
+			visibility: visible;
+			top: 0;
+		}
+	}
+
+	@keyframes fade-in {
+		0% {
+			opacity: 0;
+			visibility: hidden;
+			left: -30px;
+		}
+		100% {
+			opacity: 1;
+			visibility: visible;
+			left: 0;
+		}
+	}
+	// @keyframes rotation {
+	// 	from {
+	// 		transform: rotate(0deg);
+	// 	}
+	// 	to {
+	// 		transform: rotate(359deg);
+	// 	}
+	// }
+}

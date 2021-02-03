@@ -1,0 +1,171 @@
+.portifolio {
+	background: $orange;
+	padding: $paddingSection;
+	&__container {
+		max-width: $maxWidth;
+		margin: 0 auto;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		position: relative;
+		transition: $activeAnimation;
+		width: 85%;
+	}
+	.title {
+		@include font(black, 2.6em, 800);
+		line-height: 1em;
+		@include size(tablet) {
+			@include font(black, 2.6em, 800);
+		}
+		@include size(tablet--pro) {
+			@include font(black, 3.2em, 800);
+		}
+		.by {
+			font-size: 0.5em;
+			font-weight: 300;
+			padding-top: 10px;
+			display: flex;
+			align-items: center;
+			svg {
+				height: 100px;
+				width: auto;
+				fill: black;
+
+			}
+		}
+	}
+	&__content {
+		@include font(black, 1.2em, 800);
+		line-height: 1.5em;
+		padding: 50px 0;
+		position: relative;
+		transition: height 1.3s ease-in-out;
+		display: flex;
+		flex-flow: column;
+		@include size(tablet--pro) {
+			flex-flow: row wrap;
+			padding: 80px 0;
+		}
+
+		&--club {
+			position: relative;
+			padding: 10px 0px 10px 40px;
+			display: flex;
+			// align-items: flex-start;
+			// justify-content: flex-start;
+			@include size(tablet) {
+				padding: 20px 0px 10px 60px;
+			}
+			@include size(tablet--pro) {
+				padding: 50px 10px 40px 80px;
+				justify-content: space-between;
+			}
+			&::before {
+				position: absolute;
+				content: '';
+				top: 0;
+				left: 0px;
+				height: 100%;
+				width: 10px;
+				background: white;
+				transition: all 1.5s ease-in-out;
+				@include size(tablet) {
+					left: 10px;
+				}
+			}
+			.club__content {
+				width: 100%;
+				@include size(tablet) {
+					width: 100%;
+				}
+				@include size(tablet--pro) {
+					width: 40%;
+				}
+				&--products {
+					display: flex;
+					flex-flow: row wrap;
+					align-items: flex-start;
+					justify-content: flex-start;
+					padding: 20px 0 10px;
+				}
+				.club__logo {
+					@include font(black, 2.2em, 800);
+					padding-bottom: 40px;
+				}
+				.club__body {
+					@include font(black, 0.9em, 400);
+					line-height: 1.6em;
+					@include size(tablet) {
+						@include font(black, 1.1em, 400);
+						line-height: 1.7em;
+					}
+				}
+				.club__product {
+					@include font(black, 1.3em, 500);
+					padding: 10px 10px 10px 0;
+					display: block;
+					height: 30px;
+					&--featured {
+						@include font(black, 1.7em, 800);
+					}
+				}
+			}
+		}
+	}
+	&__item {
+		padding: 20px 0;
+		width: calc(100% - 20px);
+		margin: 10px;
+		opacity: 0;
+		visibility: hidden;
+		transition: all 1s ease-in-out;
+
+		@include size(tablet--pro) {
+			width: calc(25% - 50px);
+			margin: 15px 25px;
+			&--one {
+				width: calc(40% - 50px);
+			}
+			&--two {
+				width: calc(30% - 50px);
+			}
+		}
+		.item__logo {
+			@include font(black, 1.7em, 800);
+			padding-bottom: 20px;
+			svg {
+				height: 80px;
+				width: auto;
+				fill: black;
+				margin-bottom: 10px;
+				@include size(tablet) {
+					height: 100px;
+				}
+			}
+		}
+		.item__title {
+			font-size: 1.2em;
+			padding-bottom: 20px;
+		}
+		.item__body {
+			@include font(black, 0.9em, 400);
+			b {
+				@include font(black, 1.2em, 800);
+				padding-top: 10px;
+				display: block;
+			}
+		}
+	}
+	.active {
+		.portifolio__item {
+			animation-name: fade-in;
+			animation-fill-mode: both;
+			animation-duration: 1.5s;
+		}
+		@for $i from 1 through 35 {
+			.portifolio__item:nth-of-type(#{$i}) {
+				animation-delay: #{0.3+ ($i)/30}s;
+			}
+		}
+	}
+}

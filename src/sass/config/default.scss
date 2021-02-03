@@ -1,0 +1,41 @@
+html {
+	//scroll-behavior: smooth;
+}
+body {
+	@include font(black, 14px, 300);
+	letter-spacing: 0.3px;
+	line-height: 1.1em;
+	overflow-x: hidden;
+}
+a {
+	color: black;
+	text-decoration: none;
+	&:hover {
+		color: inherit;
+		//text-decoration: underline;
+		text-decoration: none;
+	}
+}
+
+.btn {
+	&__top {
+		position: fixed;
+		bottom: 20px;
+		right: 0px;
+
+		z-index: 999;
+		display: block;
+		transition: all 0.3s ease-in-out;
+		transform: translateX(100%);
+		width: 35px;
+		height: 35px;
+		background: transparent;
+		svg {
+			width: 35px;
+			height: auto;
+		}
+		&--open {
+			transform: translateX(-20px);
+		}
+	}
+}
